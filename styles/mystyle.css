@@ -1,0 +1,48 @@
+.wrapper{
+    position:relative;
+    height:auto;
+    min-height:100%;
+}
+
+.content{
+    padding-bottom:30px;
+}
+
+.footer{
+	background-color:#00FFFF;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+	height:30px;
+}
+
+.home{
+	font-family:consolas;
+	font-size:25px;
+	font-weight:bold;
+	text-align:left;
+	text-decoration:none
+}
+
+.welcome{
+    font-family:consolas;
+    font-size:20px;
+    font-weight:bold;
+    text-align:right;
+}
+
+.button{
+	width:100px;
+	height:30px;
+	background-color:#000000;
+
+	font-family:consolas;
+	font-size:20px;
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+.error{
+	color:#FF0000;
+}
