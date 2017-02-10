@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
 		$permit = 1;
 		$User = $_POST["user"];
 		$Passwd = $_POST["passwd"];
-		$con = mysql_connect("localhost","nian","whoisnian");
+		$con = mysql_connect("localhost","user","passwd");
 		if (!$con){
 			die('Could not connect: ' . mysql_error());
 		}

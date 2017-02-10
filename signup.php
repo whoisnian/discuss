@@ -33,7 +33,7 @@ if(isset($_POST["submit"])){
 		$Email = $_POST["email"];
 		$Passwd = $_POST["passwd"];
 		$Gender = $_POST["gender"];
-		$con = mysql_connect("localhost","nian","whoisnian");
+		$con = mysql_connect("localhost","user","passwd");
 		if (!$con){
 			die('Could not connect: ' . mysql_error());
 		}
