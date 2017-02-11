@@ -1,2 +1,2 @@
-Learn PHP
-Address:[http://whitewings.cn/discuss/home.php](http://whitewings.cn/discuss/home.php)
+Learn PHP   
+Address:[http://whitewings.cn/discuss/index.php](http://whitewings.cn/discuss/index.php)

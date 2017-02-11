@@ -1,5 +1,6 @@
 <?php
 include 'includes/header.php';
+
 $success = 1;
 $userErr = $passwdErr = $emailErr = $genderErr = "";
 if(isset($_POST["submit"])){

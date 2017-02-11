@@ -1,5 +1,6 @@
 <?php
 include 'includes/header.php';
+
 $success = 1;
 $userErr = $passwdErr = "";
 if(isset($_POST["submit"])){
@@ -34,7 +35,7 @@ if(isset($_POST["submit"])){
 		if($permit){
 			echo "登录成功，将在 3 秒后跳转到首页。";
 			setcookie("user", "$User", time()+3600*24);
-			echo '<meta http-equiv="refresh" content="3;url=home.php">';
+			echo '<meta http-equiv="refresh" content="3;url=index.php">';
 		}
 	}
 	mysql_close($con);
@@ -42,7 +43,7 @@ if(isset($_POST["submit"])){
 ?>
 <br/>
 <br/>
-	<div style="text-align:left">
+	<div>
 		<form action="login.php" method="post">
 			账号：<input type="text" name="user" size="30" maxlength="30">
 			<span class="error"><?php echo $userErr; ?></span>
