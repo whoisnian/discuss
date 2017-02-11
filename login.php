@@ -13,14 +13,11 @@ if(isset($_POST["submit"])){
 		$success = 0;
 	}
 	if($success){
+		include_once "includes/connectdb.php";
+	
 		$permit = 1;
 		$User = $_POST["user"];
 		$Passwd = $_POST["passwd"];
-		$con = mysql_connect("localhost","user","passwd");
-		if (!$con){
-			die('Could not connect: ' . mysql_error());
-		}
-		mysql_select_db("discuss", $con);
 		$userResult = $passwdResult = "";
 		$userResult = mysql_query("SELECT user FROM user WHERE user='$User'");
 		$passwdResult = mysql_query("SELECT passwd FROM user WHERE user='$User'");

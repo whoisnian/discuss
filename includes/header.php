@@ -14,19 +14,19 @@ echo '
         <hr/>
         <div class="menu">';
 if(isset($_COOKIE["user"])){
-    echo $_COOKIE["user"].",Welcome!";
+    echo $_COOKIE["user"]." , welcome! ";
 	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
-	if($_SERVER['PHP_SELF'] != '/manage.php'){
+	if($_SERVER['PHP_SELF'] != '/discuss/manage.php'){
 		echo '<button type="button" onclick="window.location.href=(\'manage.php\')" class="button">管理</button>';
 	}
 	echo '<button type="button" onclick="window.location.href=(\'logout.php\')" class="button">注销</button></div>';
 }
 else{
 	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
-    if($_SERVER['PHP_SELF'] != '/login.php'){
+    if($_SERVER['PHP_SELF'] != '/discuss/login.php'){
 		echo '<button type="button" onclick="window.location.href=(\'login.php\')" class="button">登录</button>';
 	}
-    if($_SERVER['PHP_SELF'] != '/signup.php'){
+    if($_SERVER['PHP_SELF'] != '/discuss/signup.php'){
 		echo '<button type="button" onclick="window.location.href=(\'signup.php\')" class="button">注册</button>';
 	}
 	echo '<button type="button" onclick="window.location.href=(\'anonymous.php\')" class="button">匿名</button></div>';

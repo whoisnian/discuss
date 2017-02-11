@@ -29,16 +29,13 @@ if(isset($_POST["submit"])){
 		$success = 0;
 	}
 	if($success){
+		include_once 'includes/connectdb.php';
+
 		$permit = 1;
 		$User = $_POST["user"];
 		$Email = $_POST["email"];
 		$Passwd = $_POST["passwd"];
 		$Gender = $_POST["gender"];
-		$con = mysql_connect("localhost","user","passwd");
-		if (!$con){
-			die('Could not connect: ' . mysql_error());
-		}
-		mysql_select_db("discuss", $con);
 		$userResult = $emailResult = "";
 		$userResult = mysql_query("SELECT user FROM user WHERE user='$User'");
 		$emailResult = mysql_query("SELECT email FROM user WHERE email='$Email'");
