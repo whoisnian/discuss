@@ -13,7 +13,7 @@ echo '
 		    Discuss Here!</a>
         <hr/>
         <div class="menu">';
-if (isset($_COOKIE["user"])){
+if(isset($_COOKIE["user"])){
     echo $_COOKIE["user"].",Welcome!";
 	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
 	if($_SERVER['PHP_SELF'] != '/manage.php'){
