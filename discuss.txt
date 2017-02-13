@@ -20,3 +20,15 @@ table message:
 | time      | datetime     | NO   |     | NULL    |                |
 | anonymous | int(11)      | NO   |     | NULL    |                |
 +-----------+--------------+------+-----+---------+----------------+
+
+table reply:
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| replyid   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| replyto   | int(11)      | NO   |     | NULL    |                |
+| user      | varchar(30)  | NO   |     | NULL    |                |
+| reply     | varchar(500) | NO   |     | NULL    |                |
+| time      | datetime     | NO   |     | NULL    |                |
+| anonymous | int(11)      | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
