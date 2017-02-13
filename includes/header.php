@@ -5,7 +5,8 @@ echo '
 <head>	
 	<title>
 		Discuss</title>
-	<link rel="stylesheet" type="text/css" href="styles/mystyle.css"></head>
+	<link rel="stylesheet" type="text/css" href="styles/mystyle.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>
 
 <body class="wapper">
     <div class="content">
@@ -14,7 +15,7 @@ echo '
         <hr/>
         <div class="menu">';
 if(isset($_COOKIE["user"])){
-    echo $_COOKIE["user"]." , welcome! ";
+    echo $_COOKIE["user"].",welcome! ";
 	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
 	if($_SERVER['PHP_SELF'] != '/discuss/manage.php'){
 		echo '<button type="button" onclick="window.location.href=(\'manage.php\')" class="button">管理</button>';

@@ -1,6 +1,6 @@
 <?php
 echo '
-	<!------------footer beginning------------->
+<!------------footer beginning------------->
 	</div>
 	<footer>
 		<div class="footer">

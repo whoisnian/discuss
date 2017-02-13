@@ -34,8 +34,8 @@ if(isset($_POST["submit"])){
 			setcookie("user", "$User", time()+3600*24);
 			echo '<meta http-equiv="refresh" content="3;url=index.php">';
 		}
+		mysql_close($con);
 	}
-	mysql_close($con);
 }
 ?>
 <br/>

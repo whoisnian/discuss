@@ -3,6 +3,7 @@ include 'includes/header.php';
 
 $success = 1;
 $userErr = $passwdErr = $emailErr = $genderErr = "";
+$check1 = $check2 = "";
 if(isset($_POST["submit"])){
 	if(empty($_POST["user"])){
 		$userErr = "请输入账号";
@@ -27,6 +28,16 @@ if(isset($_POST["submit"])){
 	if(empty($_POST["gender"])){
 		$genderErr = "请选择性别";
 		$success = 0;
+	}
+	else{
+		if($_POST["gender"] == 1){
+			$check1 = "checked";
+			$check2 = "";
+		}
+		else{
+			$check2 = "checked";
+			$check1 = "";
+		}
 	}
 	if($success){
 		include_once 'includes/connectdb.php';
@@ -60,20 +71,20 @@ if(isset($_POST["submit"])){
 <br/>
 	<div>
 		<form action="signup.php" method="post">
-			账号：<input type="text" name="user" size="30" maxlength="30">
+			账号：<input type="text" name="user" value="<?php echo $_POST["user"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $userErr; ?></span>
 <br/>
 <br/>
-			密码：<input type="password" name="passwd" size="30" maxlength="30">
+			密码：<input type="password" name="passwd" value="<?php echo $_POST["passwd"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $passwdErr; ?></span>
 <br/>
 <br/>
-			邮箱：<input type="text" name="email" size="30" maxlength="30">
+			邮箱：<input type="text" name="email" value="<?php echo $_POST["email"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $emailErr; ?></span>
 <br/>
 <br/>
-			性别：<input type="radio" name="gender" value="1">男性
-			      <input type="radio" name="gender" value="2">女性
+			性别：<input type="radio" name="gender" value="1" <?php echo $check1; ?>>男性
+				  <input type="radio" name="gender" value="2" <?php echo $check2; ?>>女性
 			<span class="error"><?php echo $genderErr; ?></span>
 <br/>
 <br/>
