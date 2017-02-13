@@ -42,11 +42,11 @@ if(isset($_POST["submit"])){
 <br/>
 	<div>
 		<form action="login.php" method="post">
-			账号：<input type="text" name="user" size="30" maxlength="30">
+			账号：<input type="text" name="user" value="<?php echo $_POST["user"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $userErr; ?></span>
 <br/>
 <br/>
-			密码：<input type="password" name="passwd" size="30" maxlength="30">
+			密码：<input type="password" name="passwd" value="" size="30" maxlength="30">
 			<span class="error"><?php echo $passwdErr; ?></span>
 <br/>
 <br/>
