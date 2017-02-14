@@ -45,11 +45,7 @@ if(isset($_POST["submit"])){
 		$Email = $_POST["email"];
 		$Passwd = $_POST["passwd"];
 		$Gender = $_POST["gender"];
-<<<<<<< HEAD
 		$Logged = base64_encode(base64_encode("$User:$Passwd"));
-=======
-		$Logged = base64_encode("$User:$Passwd");
->>>>>>> a07b1208aece8214de67ed0fb73c6bde13164992
 		$userResult = $emailResult = "";
 		$userResult = mysql_query("select user from user where user='$User'");
 		$emailResult = mysql_query("select email from user where email='$Email'");
