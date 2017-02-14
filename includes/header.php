@@ -1,21 +1,36 @@
 <?php
+include 'connectdb.php';
+
+$logged = "";
+if(isset($_COOKIE["logged"])){
+	$logged = $_COOKIE["logged"];
+	$userResult = mysql_query("select user from user where logged='$logged'");
+	if(!mysql_num_rows($userResult)){
+		$logged = "";
+		setcookie("logged","");
+	}
+	else{
+		$logged = mysql_result($userResult,0);
+	}
+}
+
 echo '
 <!DOCTYPE html>
 <html>
 <head>	
 	<title>
-		Discuss</title>
+        Discuss
+    </title>
 	<link rel="stylesheet" type="text/css" href="styles/mystyle.css">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>
+</head>
 
 <body class="wapper">
     <div class="content">
-	    <a href="index.php" class="home">
-		    Discuss Here!</a>
+	    <a href="index.php" class="home">Discuss Here!</a>
         <hr/>
         <div class="menu">';
-if(isset($_COOKIE["user"])){
-    echo $_COOKIE["user"].",welcome! ";
+if($logged){
+    echo $logged.",welcome! ";
 	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
 	if($_SERVER['PHP_SELF'] != '/discuss/manage.php'){
 		echo '<button type="button" onclick="window.location.href=(\'manage.php\')" class="button">管理</button>';
@@ -33,6 +48,6 @@ else{
 	echo '<button type="button" onclick="window.location.href=(\'anonymous.php\')" class="button">匿名</button></div>';
 }
 echo '
-<hr/>
+		<hr/>
 <!------------header ending------------->';
 ?>

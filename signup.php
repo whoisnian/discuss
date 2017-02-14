@@ -40,16 +40,15 @@ if(isset($_POST["submit"])){
 		}
 	}
 	if($success){
-		include_once 'includes/connectdb.php';
-
 		$permit = 1;
 		$User = $_POST["user"];
 		$Email = $_POST["email"];
 		$Passwd = $_POST["passwd"];
 		$Gender = $_POST["gender"];
+		$Logged = base64_encode(base64_encode("$User:$Passwd"));
 		$userResult = $emailResult = "";
-		$userResult = mysql_query("SELECT user FROM user WHERE user='$User'");
-		$emailResult = mysql_query("SELECT email FROM user WHERE email='$Email'");
+		$userResult = mysql_query("select user from user where user='$User'");
+		$emailResult = mysql_query("select email from user where email='$Email'");
 		if(mysql_num_rows($userResult)){
 			$userErr = "账号已被注册";
 			$permit = 0;
@@ -59,11 +58,10 @@ if(isset($_POST["submit"])){
 			$permit = 0;
 		}
 		if($permit){
-			mysql_query("INSERT INTO user (user,passwd,email,gender) VALUES ('$User','$Passwd','$Email','$Gender')");
+			mysql_query("insert into user (user,passwd,email,gender,logged) values ('$User','$Passwd','$Email','$Gender','$Logged')");
 			echo "注册成功，将在 3 秒后跳转到登录页面。";
 			echo '<meta http-equiv="refresh" content="3;url=login.php">';
 		}
- 		mysql_close($con);
 	}
 }
 ?>

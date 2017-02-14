@@ -6,10 +6,10 @@ echo '
 <br/>
 <ul class="list-ul">
 	<li class="list-li">
-		<a href="new.php">新的留言（未开放）</a></li><br/>
+		<a href="new.php">新的留言</a></li><br/>
 	<li class="list-li">
 		<a href="search.php">留言查询（未开放）</a></li><br/>';
-if($_COOKIE["user"] == "Guest"){
+if($logged == "Guest"){
 	echo '</ul>';
 }
 else{
