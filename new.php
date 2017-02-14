@@ -17,11 +17,9 @@ if(isset($_POST["submit"])){
 		$success = 0;
 	}
 	if($success){
-		include_once 'includes/connectdb.php';
-		
 		date_default_timezone_set("Asia/Shanghai");
 		$permit = 1;
-		$User = $_COOKIE["user"];
+		$User = $logged;
 		$Title = $_POST["title"];
 		$Message = $_POST["message"];
 		$Time = date("Y-m-d H:i:s");
@@ -29,7 +27,6 @@ if(isset($_POST["submit"])){
 		mysql_query("INSERT INTO message (user,title,message,time,anonymous) VALUES ('$User','$Title','$Message','$Time','$Anonymous')");
 		echo "发表成功，将在 3 秒后跳转到首页。";
 		echo '<meta http-equiv="refresh" content="3;url=index.php">';
-		mysql_close($con);
 	}
 }
 ?>
@@ -44,7 +41,7 @@ if(isset($_POST["submit"])){
 内容：<textarea name="message" rows="5" cols="52"><?php echo $_POST["message"]; ?></textarea>
 			<span class="error"><?php echo $messageErr; ?></span>
 <?php
-if($_COOKIE["user"] == "Guest"){
+if($logged == "Guest"){
 	echo '
 			<input type="hidden" name="anonymous" value="2">';
 }

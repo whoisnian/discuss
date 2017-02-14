@@ -13,14 +13,14 @@ if(isset($_POST["submit"])){
 		$success = 0;
 	}
 	if($success){
-		include_once "includes/connectdb.php";
-	
 		$permit = 1;
 		$User = $_POST["user"];
 		$Passwd = $_POST["passwd"];
-		$userResult = $passwdResult = "";
-		$userResult = mysql_query("SELECT user FROM user WHERE user='$User'");
-		$passwdResult = mysql_query("SELECT passwd FROM user WHERE user='$User'");
+		$userResult = $passwdResult = $loggedResult = "";
+		$userResult = mysql_query("select user from user where user='$User'");
+		$passwdResult = mysql_query("select passwd from user where user='$User'");
+		$loggedResult = mysql_query("select logged from user where user='$User'");
+		$Logged = mysql_result($loggedResult,0);
 		if(!mysql_num_rows($userResult)){
 			$userErr = "此账号不存在";
 			$permit = 0;
@@ -31,10 +31,9 @@ if(isset($_POST["submit"])){
 		}
 		if($permit){
 			echo "登录成功，将在 3 秒后跳转到首页。";
-			setcookie("user", "$User", time()+3600*24);
+			setcookie("logged", "$Logged", time()+3600*24);
 			echo '<meta http-equiv="refresh" content="3;url=index.php">';
 		}
-		mysql_close($con);
 	}
 }
 ?>
@@ -46,7 +45,7 @@ if(isset($_POST["submit"])){
 			<span class="error"><?php echo $userErr; ?></span>
 <br/>
 <br/>
-			密码：<input type="password" name="passwd" value="" size="30" maxlength="30">
+			密码：<input type="password" name="passwd" value="<?php echo $_POST["passwd"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $passwdErr; ?></span>
 <br/>
 <br/>
