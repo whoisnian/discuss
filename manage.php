@@ -1,6 +1,11 @@
 <?php
 include 'includes/header.php';
 
+if(!$logged){
+	echo "请登录，将在 3 秒后跳转到登录页面。";
+    echo '<meta http-equiv="refresh" content="3;url=login.php">';
+}
+
 echo '
 <br/>
 <br/>

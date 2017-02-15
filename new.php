@@ -3,7 +3,13 @@ include 'includes/header.php';
 
 $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
-if(isset($_POST["submit"])){
+$check1 = $check2 = "";
+if(!$logged){
+	echo '<span class="error">请登录，将在 3 秒后跳转到登录页面。</span>';
+	echo '<meta http-equiv="refresh" content="3;url=login.php">';
+	$success = 0;
+}
+else if(isset($_POST["submit"])){
 	if(empty($_POST["title"])){
 		$titleErr = "请输入标题";
 		$success = 0;
@@ -16,16 +22,25 @@ if(isset($_POST["submit"])){
 		$anonymousErr = "请选择是否匿名";
 		$success = 0;
 	}
+	else{
+		if($_POST["anonymous"] == "1"){
+			$check1 = "checked";
+			$check2 = "";
+		}
+		else{
+			$check2 = "checked";
+			$check1 = "";
+		}
+	}
 	if($success){
 		date_default_timezone_set("Asia/Shanghai");
-		$permit = 1;
 		$User = $logged;
 		$Title = $_POST["title"];
 		$Message = $_POST["message"];
 		$Time = date("Y-m-d H:i:s");
 		$Anonymous = $_POST["anonymous"];
-		mysql_query("INSERT INTO message (user,title,message,time,anonymous) VALUES ('$User','$Title','$Message','$Time','$Anonymous')");
 		echo "发表成功，将在 3 秒后跳转到首页。";
+		mysql_query("insert into message (user,title,message,time,anonymous) values ('$User','$Title','$Message','$Time','$Anonymous')");
 		echo '<meta http-equiv="refresh" content="3;url=index.php">';
 	}
 }
@@ -38,7 +53,7 @@ if(isset($_POST["submit"])){
 			<span class="error"><?php echo $titleErr; ?></span>
 <br/>
 <br/>
-内容：<textarea name="message" rows="5" cols="52"><?php echo $_POST["message"]; ?></textarea>
+			内容：<textarea name="message" rows="5" cols="52"><?php echo $_POST["message"]; ?></textarea>
 			<span class="error"><?php echo $messageErr; ?></span>
 <?php
 if($logged == "Guest"){
@@ -49,8 +64,8 @@ else{
 	echo '
 <br/>
 <br/>
-			匿名：<input type="radio" name="anonymous" value="1">是
-			      <input type="radio" name="anonymous" value="2">否
+			匿名：<input type="radio" name="anonymous" value="1" '.$check1.'>是
+			      <input type="radio" name="anonymous" value="2" '.$check2.'>否
 			<span class="error">'.$anonymousErr.'</span>';
 }
 ?>

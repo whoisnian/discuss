@@ -1,3 +1,7 @@
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/header.php';
 
-<?php include 'includes/footer.php'; ?>
+/*show all message;*/
+
+include 'includes/footer.php';
+?>
