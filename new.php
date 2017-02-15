@@ -47,7 +47,7 @@ else if(isset($_POST["submit"])){
 ?>
 <br/>
 <br/>
-	<div>
+	<div class="form">
 		<form action="new.php" method="post">
 			标题：<input type="text" name="title" value="<?php echo $_POST["title"]; ?>" size="50" maxlength="50">
 			<span class="error"><?php echo $titleErr; ?></span>

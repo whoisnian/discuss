@@ -67,7 +67,7 @@ if(isset($_POST["submit"])){
 ?>
 <br/>
 <br/>
-	<div>
+	<div class="form">
 		<form action="signup.php" method="post">
 			账号：<input type="text" name="user" value="<?php echo $_POST["user"]; ?>" size="30" maxlength="30">
 			<span class="error"><?php echo $userErr; ?></span>

@@ -23,31 +23,38 @@ echo '
     </title>
 	<link rel="stylesheet" type="text/css" href="styles/mystyle.css">
 </head>
-
-<body class="wapper">
-    <div class="content">
+<body>
+	<div class="wrapper">
+		<br/>
 	    <a href="index.php" class="home">Discuss Here!</a>
-        <hr/>
-        <div class="menu">';
+		<div class="menu">';
 if($logged){
-    echo $logged.",welcome! ";
-	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
+    echo $logged." , welcome! ";
+	echo '
+			<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
 	if($_SERVER['PHP_SELF'] != '/discuss/manage.php'){
-		echo '<button type="button" onclick="window.location.href=(\'manage.php\')" class="button">管理</button>';
+		echo '
+			<button type="button" onclick="window.location.href=(\'manage.php\')" class="button">管理</button>';
 	}
-	echo '<button type="button" onclick="window.location.href=(\'logout.php\')" class="button">注销</button></div>';
+	echo '
+			<button type="button" onclick="window.location.href=(\'logout.php\')" class="button">注销</button>';
 }
 else{
-	echo '<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
+	echo '
+			<button type="button" onclick="window.location.href=(\'index.php\')" class="button">首页</button>';
     if($_SERVER['PHP_SELF'] != '/discuss/login.php'){
-		echo '<button type="button" onclick="window.location.href=(\'login.php\')" class="button">登录</button>';
+		echo '
+			<button type="button" onclick="window.location.href=(\'login.php\')" class="button">登录</button>';
 	}
     if($_SERVER['PHP_SELF'] != '/discuss/signup.php'){
-		echo '<button type="button" onclick="window.location.href=(\'signup.php\')" class="button">注册</button>';
+		echo '
+			<button type="button" onclick="window.location.href=(\'signup.php\')" class="button">注册</button>';
 	}
-	echo '<button type="button" onclick="window.location.href=(\'anonymous.php\')" class="button">匿名</button></div>';
+	echo '
+			<button type="button" onclick="window.location.href=(\'anonymous.php\')" class="button">匿名</button>';
 }
 echo '
-		<hr/>
+		</div>
+		<br/>
 <!------------header ending------------->';
 ?>

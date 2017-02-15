@@ -10,8 +10,8 @@ if(!$logged){
 	$success = 0;
 }
 else if($logged == "Guest"){
-	echo '<span class="error">匿名用户无权限，将在 3 秒后跳转到首页。</span>';
-	echo '<meta http-equiv="refresh" content="3;url=index.php">';
+	echo '<span class="error">匿名用户无权限，将跳转到首页。</span>';
+	echo '<meta http-equiv="refresh" content="0;url=index.php">';
 	$success = 0;
 }
 else if(isset($_POST["submit"])){
@@ -57,8 +57,8 @@ else if(isset($_POST["submit"])){
 ?>
 <br/>
 <br/>
-	<div>
-		<form action="new.php" method="post">
+	<div class="form">
+		<form action="change.php" method="post">
 			标题：<input type="text" name="title" value="<?php echo $_POST["title"]; ?>" size="50" maxlength="50">
 			<span class="error"><?php echo $titleErr; ?></span>
 <br/>
