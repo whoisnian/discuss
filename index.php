@@ -18,7 +18,7 @@ while($row = mysql_fetch_array($messageResult)){
 	}
 	if(($logged == $row['user']&&$logged != "Guest")||($logged == "admin")){
 		$function = $function.'
-<form action="change.php" method="post" class="form-right">
+<form action="updatemessage.php" method="post" class="form-right">
 	<input type="hidden" name="messageid" value="'.$messageid.'">
 	<input type="hidden" name="title" value="'.$row['title'].'">
 	<input type="hidden" name="message" value="'.$row['message'].'">

@@ -4,11 +4,13 @@ include 'includes/header.php';
 $success = 1;
 $userErr = $passwdErr = "";
 if(isset($_POST["submit"])){
-	if(empty($_POST["user"])){
+	$temp = trim($_POST["user"]);
+	if(empty($temp)){
 		$userErr = "请输入账号";
 		$success = 0;
 	}
-	if(empty($_POST["passwd"])){
+	$temp = trim($_POST["passwd"]);
+	if(empty($temp)){
 		$passwdErr = "请输入密码";
 		$success = 0;
 	}

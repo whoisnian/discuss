@@ -5,7 +5,8 @@ $success = 1;
 $userErr = $passwdErr = $emailErr = $genderErr = "";
 $check1 = $check2 = "";
 if(isset($_POST["submit"])){
-	if(empty($_POST["user"])){
+	$temp = trim($_POST["user"]);
+	if(empty($temp)){
 		$userErr = "请输入账号";
 		$success = 0;
 	}
@@ -13,11 +14,13 @@ if(isset($_POST["submit"])){
 		$useridErr = "只允许字母和数字";
 		$success = 0;
 	}
-	if(empty($_POST["passwd"])){
+	$temp = trim($_POST["passwd"]);
+	if(empty($temp)){
 		$passwdErr = "请输入密码";
 		$success = 0;
 	}
-	if(empty($_POST["email"])){
+	$temp = trim($_POST["email"]);
+	if(empty($temp)){
 		$emailErr = "请输入邮箱";
 		$success = 0;
 	}

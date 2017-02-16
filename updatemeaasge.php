@@ -5,16 +5,23 @@ $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
 $check1 = $check2 = "";
 if(!$logged){
-	echo '<span class="error">请登录，将在 3 秒后跳转到登录页面。</span>';
-	echo '<meta http-equiv="refresh" content="3;url=login.php">';
+	echo "请登录，将跳转到登录页面。";
+	echo '<meta http-equiv="refresh" content="0;url=login.php">';
+	$success = 0;
+}
+else if($logged == "Guest"){
+	echo '<span class="error">匿名用户无权限，将跳转到首页。</span>';
+	echo '<meta http-equiv="refresh" content="0;url=index.php">';
 	$success = 0;
 }
 else if(isset($_POST["submit"])){
-	if(empty($_POST["title"])){
+	$temp = trim($_POST["title"]);
+	if(empty($temp)){
 		$titleErr = "请输入标题";
 		$success = 0;
 	}
-	if(empty($_POST["message"])){
+	$temp = trim($_POST["message"]); 
+	if(empty($temp)){
 		$messageErr = "请输入内容";
 		$success = 0;
 	}
@@ -32,15 +39,20 @@ else if(isset($_POST["submit"])){
 			$check1 = "";
 		}
 	}
+	if(empty($_POST["changed"])){
+		$Messageid = $_POST["messageid"];
+		$success = 0;
+	}
 	if($success){
 		date_default_timezone_set("Asia/Shanghai");
+		$Messageid = $_POST["messageid"];
 		$User = $logged;
 		$Title = $_POST["title"];
 		$Message = $_POST["message"];
 		$Time = date("Y-m-d H:i:s");
 		$Anonymous = $_POST["anonymous"];
-		echo "发表成功，将在 3 秒后跳转到首页。";
-		mysql_query("insert into message (user,title,message,time,anonymous) values ('$User','$Title','$Message','$Time','$Anonymous')");
+		echo "修改成功，将在 3 秒后跳转到首页。";
+		mysql_query("update message set user='$User',title='$Title',message='$Message',time='$Time',anonymous='$Anonymous' where messageid='$Messageid'");
 		echo '<meta http-equiv="refresh" content="3;url=index.php">';
 	}
 }
@@ -48,7 +60,7 @@ else if(isset($_POST["submit"])){
 <br/>
 <br/>
 	<div class="form">
-		<form action="new.php" method="post">
+		<form action="updatemessage.php" method="post">
 			标题：<input type="text" name="title" value="<?php echo $_POST["title"]; ?>" size="50" maxlength="50">
 			<span class="error"><?php echo $titleErr; ?></span>
 <br/>
@@ -71,6 +83,8 @@ else{
 ?>
 <br/>		
 <br/>
-			<input type="submit" name="submit" value="发表"></form></div>
+			<input type="hidden" name="changed" value="1">
+			<input type="hidden" name="messageid" value="<?php echo $Messageid; ?>">
+			<input type="submit" name="submit" value="修改"></form></div>
 
 <?php include 'includes/footer.php'; ?>

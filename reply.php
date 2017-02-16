@@ -14,7 +14,8 @@ else if(!isset($_POST["replyed"])){
 	$success = 0;
 }
 else if(isset($_POST["submit"])&&$success == 1){
-	if(empty($_POST["reply"])){
+	$temp = trim($_POST["reply"]);
+	if(empty($temp)){
 		$replyErr = "请输入内容";
 		$success = 0;
 	}

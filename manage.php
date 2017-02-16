@@ -12,7 +12,7 @@ echo '
 <ul class="list-ul">
 	<br/>
 	<li class="list-li">
-		<a href="new.php" class="list-a">新的留言</a></li><br/>
+		<a href="message.php" class="list-a">新的留言</a></li><br/>
 	<li class="list-li">
 		<a href="search.php" class="list-a">留言查询（未完成）</a></li><br/>';
 if($logged == "Guest"){
@@ -21,7 +21,7 @@ if($logged == "Guest"){
 else{
 	echo '
 	<li class="list-li">
-		<a href="setting.php" class="list-a">个人设置（未完成）</a></li><br/>
+		<a href="updatepasswd.php" class="list-a">修改密码</a></li><br/>
 </ul>';
 }
 
