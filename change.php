@@ -5,8 +5,8 @@ $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
 $check1 = $check2 = "";
 if(!$logged){
-	echo "请登录，将在 3 秒后跳转到登录页面。";
-	echo '<meta http-equiv="refresh" content="3;url=login.php">';
+	echo "请登录，将跳转到登录页面。";
+	echo '<meta http-equiv="refresh" content="0;url=login.php">';
 	$success = 0;
 }
 else if($logged == "Guest"){

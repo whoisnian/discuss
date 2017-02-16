@@ -1,7 +1,11 @@
 <?php
 include 'includes/header.php';
 
-if($logged == "Guest"){
+if(!$logged){
+	echo "请登录，将跳转到登录页面。";
+	echo '<meta http-equiv="refresh" content="0;url=login.php">';
+}
+else if($logged == "Guest"){
 	echo '<span class="error">匿名用户无权限，将跳转到首页。</span>';
 	echo '<meta http-equiv="refresh" content="0;url=index.php">';
 }

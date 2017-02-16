@@ -55,11 +55,13 @@ html,body{
 	padding: 30px;
 }
 .form-right{
-	float: right;
+	float: left;
+	padding: 3px;
 }
 /***********list***********/
 .list-ul{
 	list-style-type: none;
+	background-color: #696969;
 	font-size: 20px;
 }
 
@@ -69,6 +71,9 @@ html,body{
 	background-repeat: no-repeat;
 	background-position: center left;
 	background-size: 25px 25px;
+}
+.list-a{
+	color: #FFFFFF;
 }
 /***********table***********/
 .table{
@@ -88,13 +93,14 @@ html,body{
 }
 .table-b{
 	background-color: #000000;
-	width: 65%;
+	width: 64%;
 	padding: 10px;
 }
 .table-c{
 	background-color: #000000;
-	width: 10%;
+	width: 11%;
 	padding: 10px;
+	text-align: center;
 }
 .table-d{
 	background-color: #000000;

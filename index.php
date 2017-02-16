@@ -9,29 +9,26 @@ while($row = mysql_fetch_array($messageResult)){
 	if($row['anonymous'] == "1"){
 		$messagename = "用户匿名发表";
 	}
-	if($logged == $row['user']&&$logged != "Guest"){
-		$function= '
-<form action="delete.php" method="post" class="form-right">
+	if($logged){
+		$function = '
+<form action="reply.php" method="post" class="form-right">
 	<input type="hidden" name="messageid" value="'.$messageid.'">
-	<input type="submit" name="submit" value="删除">
-</form>
+	<input type="submit" name="submit" value="回复">
+</form>';
+	}
+	if(($logged == $row['user']&&$logged != "Guest")||($logged == "admin")){
+		$function = $function.'
 <form action="change.php" method="post" class="form-right">
 	<input type="hidden" name="messageid" value="'.$messageid.'">
 	<input type="hidden" name="title" value="'.$row['title'].'">
 	<input type="hidden" name="message" value="'.$row['message'].'">
     <input type="hidden" name="anonymous" value="'.$row['anonymous'].'">
     <input type="submit" name="submit" value="修改">
-</form>';
-	}
-	if($logged){
-		$function = $function.'
-<form action="reply.php" method="post" class="form-right">
+</form>
+<form action="delete.php" method="post" class="form-right">
 	<input type="hidden" name="messageid" value="'.$messageid.'">
-	<input type="submit" name="submit" value="回复">
+	<input type="submit" name="submit" value="删除">
 </form>';
-	}
-	else{
-		$function = "请登录";
 	}
 	echo '
 <table class="table">
