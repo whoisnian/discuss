@@ -1,59 +1,111 @@
 <?php
 include 'Includes/header.php';
-$messageResult = mysql_query("select * from message order by messageid desc");
-while($row = mysql_fetch_array($messageResult)){
-	$Function = "";
-	$Messagename = $row['username'];
-	$Messageid = $row['messageid'];
-	if($row['anonymous'] == "1"){
-		$Messagename = "用户匿名发表";
-	}
-	if($logged){
-		$Function = '
-<form action="reply.php" method="post" class="form-left">
-	<input type="hidden" name="messageid" value="'.$Messageid.'">
-	<input type="submit" name="submit" value="回复">
-</form>';
-	}
-	if(($logged == $row['username']&&$logged != "Guest")||($logged == "admin")){
-		$Function = $Function.'
-<form action="updatemessage.php" method="post" class="form-left">
-	<input type="hidden" name="messageid" value="'.$Messageid.'">
-	<input type="hidden" name="title" value="'.$row['title'].'">
-	<input type="hidden" name="message" value="'.$row['message'].'">
-    <input type="hidden" name="anonymous" value="'.$row['anonymous'].'">
-    <input type="submit" name="submit" value="修改">
-</form>
-<form action="delete.php" method="post" class="form-left">
-	<input type="hidden" name="messageid" value="'.$Messageid.'">
-	<input type="submit" name="submit" value="删除">
-</form>';
-	}
-	echo '
-<table class="table">
-<tr>
-	<td class="table-a">'.$Messagename.'<br/>'.$row['time'].'</td>
-	<td class="table-b">'.$row['title'].'</td>
-	<td class="table-c">'.$Function.'</td>
-</tr>
-<tr>
-	<td colspan="3" class="table-d">'.$row['message'].'</td>
-</tr>';
-	$replyResult = mysql_query("select * from reply where replyto='$Messageid' order by replyid desc");
-	while($rowrow = mysql_fetch_array($replyResult)){
-		$Replyname = $rowrow['username'];
-		if($rowrow['anonymous'] == "1"){
-			$Replyname = "用户匿名发表";
+$success = 1;
+$searched = 0;
+$userErr = "";
+if(isset($_POST["submit"])){
+	$User = test_input($_POST["user"]);
+	if($_POST["submit"] == "通过账号查询"){
+		if(empty($User)){
+			$userErr = "账号不能为空";
+			$success = 0;
 		}
-		echo '
-<tr>
-	<td class="table-e">'.$Replyname.'<br/>'.$rowrow['time'].'</td>
-	<td colspan="2" class="table-f">'.$rowrow['reply'].'</td>
-</tr>';
+		else if(!preg_match("/^[a-zA-Z0-9]+$/",$User)){
+			$userErr = "只允许字母和数字";
+			$success = 0;
+		}
+		if($success){
+			$userResult = mysql_query("select * from user where username='$User'");
+			if(!mysql_num_rows($userResult)){
+				$userErr = "此账号不存在";
+				$success = 0;
+			}
+		}
 	}
-	echo '
-</table>
-<br/>';
+	else if($_POST["submit"] == "通过邮箱查询"){
+		if(empty($User)){
+			$userErr = "请输入邮箱";
+			$success = 0;
+		}
+		else if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$User)){
+			$userErr = "无效的邮箱格式";
+			$success = 0;
+		}
+		if($success){
+			$userResult = mysql_query("select * from user where email='$User'");
+			if(!mysql_num_rows($userResult)){
+				$userErr = "此邮箱不存在";
+				$success = 0;
+			}
+		}
+	}
+	if($success){
+		$row = mysql_fetch_array($userResult);
+		$Userid = $row["userid"];
+		$Username = $row["username"];
+		$Gender = $row["gender"];
+		$QQ = $row["qq"];
+		$Email = $row["email"];
+		$Blog = $row["blog"];
+		if(empty($Blog)){
+			$Blog = "none";
+		}
+		if(empty($QQ)){
+			$QQ = "none";
+		}
+		if($Gender == 1){
+			$Gender = "Man";
+		}
+		else{
+			$Gender = "Woman";
+		}
+		$searched = 1;
+	}
+}
+?>
+<br/>
+<br/>
+	<div class="form">
+		<form action="searchuser.php" method="post">
+			<input type="text" name="user" value="<?php echo $_POST["user"]; ?>"size="30" maxlength="30">
+			<span class="error"><?php echo $userErr; ?></span>
+<br/>
+<br/>
+			<input type="submit" name="submit" value="通过账号查询">
+			<input type="submit" name="submit" value="通过邮箱查询"></form></div>
+<?php
+if($searched){
+	echo '	
+<br/>
+<br/>
+<div class="information">
+	<table>
+		<tr>
+			<td width="200px">UserID:</td>
+			<td>'.$Userid.'</td>
+		</tr>
+		<tr>
+			<td>UserName:</td>
+			<td>'.$Username.'</td>
+		</tr>
+		<tr>
+			<td>Gender:</td>
+			<td>'.$Gender.'</td>
+		</tr>
+		<tr>
+			<td>QQ:</td>
+			<td>'.$QQ.'</td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td>'.$Email.'</td>
+		</tr>
+		<tr>
+			<td>Blog:</td>
+			<td>'.$Blog.'</td>
+		</tr>
+	</table>
+</div>';
 }
 include 'Includes/footer.php';
 ?>

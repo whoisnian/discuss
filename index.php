@@ -29,7 +29,9 @@ while($row = mysql_fetch_array($messageResult)){
 	<input type="submit" name="submit" value="删除">
 </form>';
 	}
-	echo '
+	echo '	
+<br/>
+<br/>	
 <table class="table">
 <tr>
 	<td class="table-a">'.$Messagename.'<br/>'.$row['time'].'</td>

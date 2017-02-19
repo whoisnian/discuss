@@ -14,12 +14,14 @@ echo '
 	<li class="list-li">
 		<a href="searchmessage.php" class="list-a">留言查询（未完成）</a></li><br/>
 	<li class="list-li">
-		<a href="searchuser.php" class="list-a">用户查询（未完成）</a></li><br/>';
+		<a href="searchuser.php" class="list-a">用户查询</a></li><br/>';
 if($logged == "Guest"){
 	echo '</ul>';
 }
 else{
 	echo '
+	<li class="list-li">
+		<a href="setting.php" class="list-a">个人信息（未完成）</a></li><br/>
 	<li class="list-li">
 		<a href="updatepassword.php" class="list-a">修改密码</a></li><br/>
 </ul>';

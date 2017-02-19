@@ -1,7 +1,7 @@
 <?php
 include 'Includes/header.php';
 $success = 1;
-$usernameErr = $passwordErr = $emailErr = $genderErr = "";
+$usernameErr = $passwordErr = $emailErr = $blogErr = $genderErr = "";
 $check1 = $check2 = "";
 if(isset($_POST["submit"])){
 	$Username = test_input($_POST["username"]);
