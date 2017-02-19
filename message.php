@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'Includes/header.php';
 $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
 $check1 = $check2 = "";
@@ -71,4 +71,4 @@ else{
 <br/>		
 <br/>
 			<input type="submit" name="submit" value="发表"></form></div>
-<?php include 'includes/footer.php'; ?>
+<?php include 'Includes/footer.php'; ?>

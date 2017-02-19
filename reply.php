@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'Includes/header.php';
 $success = 1;
 $replyErr = $anonymousErr = "";
 $check1 = $check2 = "";
@@ -66,4 +66,4 @@ else{
 			<input type="hidden" name="replyto" value="<?php echo $Replyto; ?>">
 			<input type="submit" name="submit" value="回复"></form></div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'Includes/footer.php'; ?>

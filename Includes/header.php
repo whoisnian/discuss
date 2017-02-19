@@ -25,7 +25,7 @@ echo '
 	<title>
         Discuss
     </title>
-	<link rel="stylesheet" type="text/css" href="styles/mystyle.css">
+	<link rel="stylesheet" type="text/css" href="Styles/mystyle.css">
 </head>
 <body>
 	<div class="wrapper">

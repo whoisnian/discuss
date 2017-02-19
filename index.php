@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'Includes/header.php';
 $messageResult = mysql_query("select * from message order by messageid desc");
 while($row = mysql_fetch_array($messageResult)){
 	$Function = "";
@@ -55,5 +55,5 @@ while($row = mysql_fetch_array($messageResult)){
 </table>
 <br/>';
 }
-include 'includes/footer.php';
+include 'Includes/footer.php';
 ?>

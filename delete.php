@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'Includes/header.php';
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
 	echo '<meta http-equiv="refresh" content="0;url=login.php">';
@@ -30,4 +30,4 @@ else if(isset($_POST["submit"])&&$_POST["submit"] != "删除"){
 			<input type="hidden" name="messageid" value="<?php echo $_POST["messageid"]; ?>">
 			<input type="submit" name="submit" value="确认">
 			<input type="submit" name="submit" value="取消"></form></div>
-<?php include 'includes/footer.php'; ?>
+<?php include 'Includes/footer.php'; ?>
