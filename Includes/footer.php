@@ -1,5 +1,4 @@
 <?php
-
 echo '
 <!------------footer beginning------------->
 		<div class="push"></div>
@@ -10,5 +9,4 @@ echo '
 </body>
 </html>';
 mysql_close($con);
-
 ?>

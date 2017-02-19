@@ -1,11 +1,9 @@
 <?php
-include 'includes/header.php';
-
+include 'Includes/header.php';
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
     echo '<meta http-equiv="refresh" content="0;url=login.php">';
 }
-
 echo '
 <br/>
 <br/>
@@ -21,9 +19,9 @@ if($logged == "Guest"){
 else{
 	echo '
 	<li class="list-li">
-		<a href="updatepasswd.php" class="list-a">修改密码</a></li><br/>
+		<a href="updatepassword.php" class="list-a">修改密码</a></li><br/>
 </ul>';
 }
 
-include 'includes/footer.php';
+include 'Includes/footer.php';
 ?>

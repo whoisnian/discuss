@@ -1,30 +1,30 @@
 <?php
 include 'includes/header.php';
-
 $success = 1;
 $replyErr = $anonymousErr = "";
 $check1 = $check2 = "";
+$Replyto = $_POST["messageid"];
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
 	echo '<meta http-equiv="refresh" content="0;url=login.php">';
 	$success = 0;
 }
-else if(!isset($_POST["replyed"])){
-	$Replyto = $_POST["messageid"];
-	$success = 0;
-}
-else if(isset($_POST["submit"])&&$success == 1){
-	$temp = trim($_POST["reply"]);
-	if(empty($temp)){
+else if(isset($_POST["submit"])&&isset($_POST["replyed"])){
+	$Username = $logged;
+	$Reply = test_input($_POST["reply"]);
+	date_default_timezone_set("Asia/Shanghai");
+	$Time = date("Y-m-d H:i:s");
+	$Anonymous = $_POST["anonymous"];
+	if(empty($Reply)){
 		$replyErr = "请输入内容";
 		$success = 0;
 	}
-	if(empty($_POST["anonymous"])){
+	if(empty($Anonymous)){
 		$anonymousErr = "请选择是否匿名";
 		$success = 0;
 	}
 	else{
-		if($_POST["anonymous"] == "1"){
+		if($Anonymous == "1"){
 			$check1 = "checked";
 			$check2 = "";
 		}
@@ -34,14 +34,8 @@ else if(isset($_POST["submit"])&&$success == 1){
 		}
 	}
 	if($success){
-		date_default_timezone_set("Asia/Shanghai");
-		$Replyto = $_POST["replyto"];
-		$User = $logged;
-		$Reply = $_POST["reply"];
-		$Time = date("Y-m-d H:i:s");
-		$Anonymous = $_POST["anonymous"];
 		echo "回复成功，将在 3 秒后跳转到首页。";
-		mysql_query("insert into reply (replyto,user,reply,time,anonymous) values ('$Replyto','$User','$Reply','$Time','$Anonymous')");
+		mysql_query("insert into reply (replyto,username,reply,time,anonymous) values ('$Replyto','$Username','$Reply','$Time','$Anonymous')");
 		echo '<meta http-equiv="refresh" content="3;url=index.php">';
 	}
 }

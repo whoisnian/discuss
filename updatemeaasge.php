@@ -1,9 +1,9 @@
 <?php
 include 'includes/header.php';
-
 $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
 $check1 = $check2 = "";
+$Messageid = $_POST["messageid"];
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
 	echo '<meta http-equiv="refresh" content="0;url=login.php">';
@@ -14,23 +14,27 @@ else if($logged == "Guest"){
 	echo '<meta http-equiv="refresh" content="0;url=index.php">';
 	$success = 0;
 }
-else if(isset($_POST["submit"])){
-	$temp = trim($_POST["title"]);
-	if(empty($temp)){
+else if(isset($_POST["submit"])&&isset($_POST["changed"])){
+	$Username = $logged;
+	$Title = test_input($_POST["title"]);
+	$Message = test_input($_POST["message"])
+	date_default_timezone_set("Asia/Shanghai");
+	$Time = date("Y-m-d H:i:s");
+	$Anonymous = $_POST["anonymous"];
+	if(empty($Title)){
 		$titleErr = "请输入标题";
 		$success = 0;
 	}
-	$temp = trim($_POST["message"]); 
-	if(empty($temp)){
+	if(empty($Message)){
 		$messageErr = "请输入内容";
 		$success = 0;
 	}
-	if(empty($_POST["anonymous"])){
+	if(empty($Anonymous)){
 		$anonymousErr = "请选择是否匿名";
 		$success = 0;
 	}
 	else{
-		if($_POST["anonymous"] == "1"){
+		if($Anonymous == "1"){
 			$check1 = "checked";
 			$check2 = "";
 		}
@@ -39,20 +43,9 @@ else if(isset($_POST["submit"])){
 			$check1 = "";
 		}
 	}
-	if(empty($_POST["changed"])){
-		$Messageid = $_POST["messageid"];
-		$success = 0;
-	}
 	if($success){
-		date_default_timezone_set("Asia/Shanghai");
-		$Messageid = $_POST["messageid"];
-		$User = $logged;
-		$Title = $_POST["title"];
-		$Message = $_POST["message"];
-		$Time = date("Y-m-d H:i:s");
-		$Anonymous = $_POST["anonymous"];
 		echo "修改成功，将在 3 秒后跳转到首页。";
-		mysql_query("update message set user='$User',title='$Title',message='$Message',time='$Time',anonymous='$Anonymous' where messageid='$Messageid'");
+		mysql_query("update message set username='$Username',title='$Title',message='$Message',time='$Time',anonymous='$Anonymous' where messageid='$Messageid'");
 		echo '<meta http-equiv="refresh" content="3;url=index.php">';
 	}
 }
@@ -86,5 +79,4 @@ else{
 			<input type="hidden" name="changed" value="1">
 			<input type="hidden" name="messageid" value="<?php echo $Messageid; ?>">
 			<input type="submit" name="submit" value="修改"></form></div>
-
 <?php include 'includes/footer.php'; ?>

@@ -1,19 +1,23 @@
 <?php
 include 'connectdb.php';
-
+function test_input($data){
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
 $logged = "";
 if(isset($_COOKIE["logged"])){
 	$logged = $_COOKIE["logged"];
-	$userResult = mysql_query("select user from user where logged='$logged'");
-	if(!mysql_num_rows($userResult)){
+	$usernameResult = mysql_query("select username from user where logged='$logged'");
+	if(!mysql_num_rows($usernameResult)){
 		$logged = "";
 		setcookie("logged","");
 	}
 	else{
-		$logged = mysql_result($userResult,0);
+		$logged = mysql_result($usernameResult,0);
 	}
 }
-
 echo '
 <!DOCTYPE html>
 <html>
