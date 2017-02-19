@@ -12,7 +12,9 @@ echo '
 	<li class="list-li">
 		<a href="message.php" class="list-a">新的留言</a></li><br/>
 	<li class="list-li">
-		<a href="search.php" class="list-a">留言查询（未完成）</a></li><br/>';
+		<a href="searchmessage.php" class="list-a">留言查询（未完成）</a></li><br/>
+	<li class="list-li">
+		<a href="searchuser.php" class="list-a">用户查询（未完成）</a></li><br/>';
 if($logged == "Guest"){
 	echo '</ul>';
 }
