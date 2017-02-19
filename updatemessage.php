@@ -38,7 +38,7 @@ else if(isset($_POST["submit"])){
 			$check1 = "checked";
 			$check2 = "";
 		}
-		else{
+		else if($Anonymous == 2){
 			$check2 = "checked";
 			$check1 = "";
 		}

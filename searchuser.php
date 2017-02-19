@@ -56,8 +56,11 @@ if(isset($_POST["submit"])){
 		if($Gender == 1){
 			$Gender = "Man";
 		}
-		else{
+		else if($Gender == 2){
 			$Gender = "Woman";
+		}
+		else{
+			$Gender = "none";
 		}
 		$searched = 1;
 	}

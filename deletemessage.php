@@ -26,7 +26,7 @@ else if(isset($_POST["submit"])&&$_POST["submit"] != "删除"){
 	<span class="error">确认删除？</span>
 	<br/>
 	<br/>
-		<form action="delete.php" method="post">
+		<form action="deletemessage.php" method="post">
 			<input type="hidden" name="messageid" value="<?php echo $_POST["messageid"]; ?>">
 			<input type="submit" name="submit" value="确认">
 			<input type="submit" name="submit" value="取消"></form></div>

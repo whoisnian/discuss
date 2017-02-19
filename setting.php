@@ -1,7 +1,23 @@
 <?php 
 include 'Includes/header.php';
 $success = 1;
-$oldpasswordErr = $newpasswordErr = "";
+$qqErr = $emailErr = $blogErr = $genderErr = $passwordErr = "";
+$check1 = $check2 = "";
+$userResult = mysql_query("select * from user where username='$logged'");
+$row = mysql_fetch_array($userResult);
+$Username = $row['username'];
+$QQ = $row['qq'];
+$Email = $row['email'];
+$Blog = $row['blog'];
+$Gender = $row['gender'];
+if($Gender == 1){
+	$check1 = "checked";
+	$check2 = "";
+}
+else if($Gender == 2){
+	$check2 = "checked";
+	$check1 = "";
+}
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
 	echo '<meta http-equiv="refresh" content="0;url=login.php">';
@@ -14,29 +30,61 @@ else if($logged == "Guest"){
 }
 else if(isset($_POST["submit"])){
 	$Username = $logged;
-	$Oldpassword = test_input($_POST["oldpassword"]);
-	$Newpassword = test_input($_POST["newpassword"]);
-	$Newlogged = base64_encode(base64_encode("$Username:$Newpassword"));
-	if(empty($Oldpassword)){
-		$oldpasswordErr = "请输入原密码";
+	$QQ = test_input($_POST["qq"]);
+	$Email = test_input($_POST["email"]);
+	$Blog = test_input($_POST["blog"]);
+	$Gender = $_POST["gender"];
+	$Password = $_POST["password"];
+	if(empty($QQ)){
+		$qqErr = "请输入新QQ号";
 		$success = 0;
 	}
-	if(empty($Newpassword)){
-	    $newpasswordErr = "请输入新密码";
+	else if(!preg_match("/^[1-9]*[1-9][0-9]*$/",$QQ)){
+		$qqErr = "请输入正确的QQ号";
 		$success = 0;
+	}
+	if(empty($Email)){
+	    $emailErr = "请输入新邮箱";
+		$success = 0;
+	}
+	else if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$Email)){
+		$emailErr = "无效的邮箱格式";
+		$success = 0;
+	}
+	if(empty($Blog)){
+		$blogErr = "请输入新博客";
+		$success = 0;
+	}
+	if(empty($Password)){
+		$passwordErr = "请输入密码";
+		$success = 0;
+	}
+	if(empty($Gender)){
+		$genderErr = "请选择性别";
+		$success = 0;
+	}
+	else{
+		if($Gender == 1){
+			$check1 = "checked";
+			$check2 = "";
+		}
+		else if($Gender == 2){
+			$check2 = "checked";
+			$check1 = "";
+		}
 	}
 	if($success){
 		$permit = 1;
 		$passwordResult = "";
 		$passwordResult = mysql_query("select password from user where username='$Username'");
-		if(mysql_result($passwordResult,0) != $Oldpassword){
-			$oldpasswordErr = "原密码错误";
+		if(mysql_result($passwordResult,0) != $Password){
+			$passwordErr = "密码错误";
 			$permit = 0;
 		}
 		if($permit){
-			echo "修改成功，将在 3 秒后跳转到登录页面。";
-			mysql_query("update user set password='$Newpassword',logged='$Newlogged' where username='$Username'");
-			echo '<meta http-equiv="refresh" content="3;url=login.php">';
+			echo "修改成功，将在 3 秒后跳转到首页。";
+			mysql_query("update user set qq='$QQ',email='$Email',blog='$Blog',gender='$Gender' where username='$Username'");
+			echo '<meta http-equiv="refresh" content="3;url=index.php">';
 		}
 	}
 }
@@ -44,14 +92,27 @@ else if(isset($_POST["submit"])){
 <br/>
 <br/>
 	<div class="form">
-		<form action="updatepassword.php" method="post">
-			原密码：<input type="password" name="oldpassword" size="30" maxlength="30">
-			<span class="error"><?php echo $oldpasswordErr; ?></span>
+		<form action="setting.php" method="post">
+			Q Q：<input type="text" name="qq" value="<?php echo $QQ; ?>" size="30" maxlength="30">
+			<span class="error"><?php echo $qqErr; ?></span>
 <br/>
 <br/>
-			新密码：<input type="password" name="newpassword" size="30" maxlength="30">
-			<span class="error"><?php echo $newpasswordErr; ?></span>
+			邮箱：<input type="text" name="email" value="<?php echo $Email; ?>" size="30" maxlength="30">
+			<span class="error"><?php echo $emailErr; ?></span>
 <br/>
 <br/>
-			<input type="submit" name="submit" value="修改"></form></div>
+			博客：<input type="text" name="blog" value="<?php echo $Blog; ?>" size="30" maxlength="30">
+			<span class="error"><?php echo $blogErr; ?></span>
+<br/>
+<br/>
+			性别：<input type="radio" name="gender" value="1" <?php echo $check1; ?>>男性
+				  <input type="radio" name="gender" value="2" <?php echo $check2; ?>>女性
+			<span class="error"><?php echo $genderErr; ?></span>
+<br/>
+<br/>
+			密码：<input type="password" name="password" size="30" maxlength="30">
+			<span class="error"><?php echo $passwordErr; ?></span>
+<br/>
+<br/>
+			<input type="submit" name="submit" value="确认修改"></form></div>
 <?php include 'Includes/footer.php'; ?>

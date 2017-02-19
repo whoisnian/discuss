@@ -131,6 +131,12 @@ html,body{
 	padding: 30px;
 }
 
+.information-title{
+	font-weight: bold;
+	font-size: 30px;
+	color: #000000;
+}
+
 .error{
 	color: #ADFF2F;
 }

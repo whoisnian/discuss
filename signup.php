@@ -38,7 +38,7 @@ if(isset($_POST["submit"])){
 			$check1 = "checked";
 			$check2 = "";
 		}
-		else{
+		else if($Gender == 2){
 			$check2 = "checked";
 			$check1 = "";
 		}
