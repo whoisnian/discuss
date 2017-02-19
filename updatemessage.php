@@ -3,7 +3,6 @@ include 'Includes/header.php';
 $success = 1;
 $titleErr = $messageErr = $anonymousErr = "";
 $check1 = $check2 = "";
-$Messageid = $_POST["messageid"];
 if(!$logged){
 	echo "请登录，将跳转到登录页面。";
 	echo '<meta http-equiv="refresh" content="0;url=login.php">';
@@ -14,10 +13,11 @@ else if($logged == "Guest"){
 	echo '<meta http-equiv="refresh" content="0;url=index.php">';
 	$success = 0;
 }
-else if(isset($_POST["submit"])&&isset($_POST["changed"])){
+else if(isset($_POST["submit"])){
+	$Messageid = $_POST["messageid"];
 	$Username = $logged;
 	$Title = test_input($_POST["title"]);
-	$Message = test_input($_POST["message"])
+	$Message = test_input($_POST["message"]);
 	date_default_timezone_set("Asia/Shanghai");
 	$Time = date("Y-m-d H:i:s");
 	$Anonymous = $_POST["anonymous"];
@@ -42,6 +42,9 @@ else if(isset($_POST["submit"])&&isset($_POST["changed"])){
 			$check2 = "checked";
 			$check1 = "";
 		}
+	}
+	if(!isset($_POST["changed"])){
+		$success = 0;
 	}
 	if($success){
 		echo "修改成功，将在 3 秒后跳转到首页。";

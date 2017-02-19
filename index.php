@@ -24,7 +24,7 @@ while($row = mysql_fetch_array($messageResult)){
     <input type="hidden" name="anonymous" value="'.$row['anonymous'].'">
     <input type="submit" name="submit" value="修改">
 </form>
-<form action="delete.php" method="post" class="form-right">
+<form action="delete.php" method="post" class="form-left">
 	<input type="hidden" name="messageid" value="'.$Messageid.'">
 	<input type="submit" name="submit" value="删除">
 </form>';

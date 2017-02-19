@@ -16,9 +16,9 @@ if(isset($_POST["submit"])){
 	if($success){
 		$permit = 1;
 		$usernameResult = $passwordResult = $loggedResult = "";
-		$usernameResult = mysql_query("select username from user where user='$Username'");
-		$passwordResult = mysql_query("select password from user where user='$Username'");
-		$loggedResult = mysql_query("select logged from user where user='$Username'");
+		$usernameResult = mysql_query("select username from user where username='$Username'");
+		$passwordResult = mysql_query("select password from user where username='$Username'");
+		$loggedResult = mysql_query("select logged from user where username='$Username'");
 		$Logged = mysql_result($loggedResult,0);
 		if(!mysql_num_rows($usernameResult)){
 			$usernameErr = "此账号不存在";

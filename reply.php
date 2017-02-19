@@ -11,6 +11,7 @@ if(!$logged){
 }
 else if(isset($_POST["submit"])&&isset($_POST["replyed"])){
 	$Username = $logged;
+	$Replyto = $_POST["replyto"];
 	$Reply = test_input($_POST["reply"]);
 	date_default_timezone_set("Asia/Shanghai");
 	$Time = date("Y-m-d H:i:s");

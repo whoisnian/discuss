@@ -1,10 +1,11 @@
 <?php
 include 'connectdb.php';
 function test_input($data){
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
+	$data = str_replace("'","\"","$data");
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
 }
 $logged = "";
 if(isset($_COOKIE["logged"])){
