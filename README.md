@@ -7,8 +7,8 @@ Learn PHP
 ###Environment
 LAMP
 ```
-> CentOS
-> Apache
-> MariaDB
-> PHP
+> CentOS   --- 7.2.1511
+> Apache   --- 2.4.6
+> MariaDB  --- 5.5.52
+> PHP      --- 5.4.16
 ```
