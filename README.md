@@ -1,7 +1,7 @@
 # Discuss Here!
 Learn PHP for the first time. 
 ## Address
-[https://whitewings.cn/discuss/index.php](https://whitewings.cn/discuss/index.php)
+[https://whitewings.cn/discuss/](https://whitewings.cn/discuss/)
 
 ## Environment
 ```
