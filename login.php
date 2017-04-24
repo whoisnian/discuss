@@ -29,10 +29,10 @@ if(isset($_POST["submit"])){
 			$permit = 0;
 		}
 		if($permit){
-			echo "登录成功，将在 3 秒后跳转到首页。";
+			echo "登录成功，将跳转到首页。";
 			setcookie("logged","");
 			setcookie("logged", "$Logged", time()+3600*24);
-			echo '<meta http-equiv="refresh" content="3;url=index.php">';
+			echo '<meta http-equiv="refresh" content="0;url=index.php">';
 		}
 	}
 }
