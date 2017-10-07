@@ -2,9 +2,6 @@
 Learn PHP for the first time.   
 __This repository has ceased maintenance (停止维护).__
 
-## Address
-[https://whitewings.cn/discuss/](https://whitewings.cn/discuss/)
-
 ## Environment
 ```
 > CentOS   --- 7.2.1511
