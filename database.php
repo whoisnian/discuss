@@ -37,6 +37,7 @@ mysql_query($con, 'create table reply(
                     username varchar(30) not null,
                     reply varchar(500) not null,
                     time datetime not null,
+                    anonymous int(11) not null,
                     primary key (replyid))');
 
 mysql_close($con);
